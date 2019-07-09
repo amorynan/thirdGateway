@@ -1,0 +1,9 @@
+server:
+  port: 8085
+
+spring:
+
+# 日志配置
+logging:
+  path: /var/logs
+

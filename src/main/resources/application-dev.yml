@@ -1,0 +1,68 @@
+server:
+  port: 8443 #开发环境会开启https
+
+spring:
+  application:
+    name: third-gateway
+  #redis
+  redis:
+    prefix: thirdgateway-
+    host: 47.111.167.52
+    password: CN3j1aKzxWYHxvU4
+    pool:
+      max-active: 200
+      max-wait: 5000
+      max-idle: 150
+      min-idle: 0
+    timeout: 6000
+
+aliyun:
+  oss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: test # 访问身份验证中用到用户标识
+    accessKeySecret: test # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: macro-oss # oss的存储空间
+    policy:
+      expire: 300 # 签名有效期(S)
+    maxSize: 10 # 上传文件大小(M)
+    callback: http://:8080/aliyun/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: thirdgateway/images/ # 上传文件夹路径前缀
+  #aliyun 短信接口
+  product: Dysmsapi
+  domain: dysmsapi.aliyuncs.com
+  accesskey:
+    id: LTAISk7RB5yyxZEP
+    secret: GNxsDDXdPM7smyLgo2Nriq9Dkw9Nis
+  signname: 来一板
+  sms:
+    expiretime: 60000
+    connectpropertyname: sun.net.client.defaultConnectTimeout
+    readpropertyname: sun.net.client.defaultReadTimeout
+    templatecode: SMS_93735028
+
+#  微信小程序配置 appid /appsecret
+wx:
+  applet:
+    signType: MD5
+    appid: appid
+    appsecret: appsecret
+    mchId:
+    secretKey:
+    order:
+      unifiedOrderUrl: https://api.mch.weixin.qq.com/pay/unifiedorder"
+      notifyUrl:
+    tradeType: JSAPI
+
+# jwt 密钥和过期时间
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: 5371f468a45e5ab1f442c38e0932aef24447139a #JWT加解密使用的密钥，> 16 char
+  expiration: 7200 #JWT的超期限时间。两个小时 )
+
+# 日志配置
+logging:
+  level:
+    com.cjs.amory.miniProPlugin.mapper: debug
+    com.cjs.amory.miniProPlugin.dao: debug
+
