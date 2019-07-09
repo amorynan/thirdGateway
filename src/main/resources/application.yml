@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev #默认为开发环境
+
+http:
+  port: 8085 # http服务端口
+
+
+
